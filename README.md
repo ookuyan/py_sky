@@ -1,2 +1,2 @@
 # py_sky
-Sky Model (Single Rayleigh and Mie Scattering)
+Sky Brightness Model (Rayleigh and Mie Scattering)
