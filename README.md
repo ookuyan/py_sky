@@ -1,2 +1,2 @@
-# dibSim
-DIB Sky Model (Single Rayleigh and Mie Scattering)
+# py_sky
+Sky Model (Single Rayleigh and Mie Scattering)
