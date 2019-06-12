@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from engine import render, show, position_of_sun
+from py_sky import render, show, position_of_sun
 
 
 def main():
