@@ -14,4 +14,4 @@ rgb = render(scene)
 show(rgb)
 ```
 
-![alt ](https://drive.google.com/open?id=1o9H9RFzTfLzr7dQOdMNBtYuD7lQpw4kO)
+![alt text](https://drive.google.com/file/d/1o9H9RFzTfLzr7dQOdMNBtYuD7lQpw4kO/view?usp=sharing)
