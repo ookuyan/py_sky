@@ -4,7 +4,7 @@ from py_sky import render, show, set_scene
 
 
 def main():
-    scene = set_scene(zenith=60, azimuth=180, width=32, height=32)
+    scene = set_scene(zenith=45, azimuth=180, width=32, height=32)
 
     rgb = render(scene)
 
