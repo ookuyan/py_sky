@@ -14,4 +14,4 @@ rgb = render(scene)
 show(rgb)
 ```
 
-![](https://drive.google.com/file/d/1o9H9RFzTfLzr7dQOdMNBtYuD7lQpw4kO/view?usp=sharing)
+![](https://raw.githubusercontent.com/ookuyan/py_sky/master/examples/sky_model.png?token=AAQLO5GNVY5BZ5KBBP5EWEK5BOQJS)
