@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 
-__all__ = ['render', 'show', 'position_of_sun']
+__all__ = ['render', 'show', 'set_scene']
 
 import numpy as np
 
 from ..vec3 import Vec3
-from .helper import intersect, show, position_of_sun
+from .helper import intersect, show, set_scene
 
 
 class RayType:
@@ -34,7 +34,22 @@ class Atmosphere:
         self.Hr = hr
         self.Hm = hm
 
+        # For Mars
+        # self.sundir = sd
+        # self.radiusEarth = 3389.5e3
+        # self.radiusAtmosphere = 3396.2e3
+        # self.Hr = hr
+        # self.Hm = hm
+
+        # Rayleigh scattering coefficients at sea level (for Earth)
+        # 440 nm, 550 nm, 680 nm
         self.betaR = Vec3(3.8e-6, 13.5e-6, 33.1e-6)
+
+        # Rayleigh scattering coefficients (for Mars)
+        # 440 nm, 550 nm, 680 nm
+        # self.betaR = Vec3(5.75e-3, 13.57e-3, 19.918e-3)
+
+        # Mie scattering coefficient at sea level (for Earth)
         self.betaM = Vec3(21.e-6)
 
     def compute_incident_light(self, r):
@@ -55,7 +70,7 @@ class Atmosphere:
             r.tmax = t1
 
         numSamples = 16.
-        numSamplesLight = 8.
+        numSamplesLight = 16.
 
         segmentLength = (r.tmax - r.tmin) / numSamples
         tCurrent = r.tmin
@@ -67,6 +82,9 @@ class Atmosphere:
         opticalDepthM = 0
 
         mu = r.direction.dot(self.sundir)
+
+        # Anisotropy of the medium (aerosol)
+        # if g = 0, function is equal to rayleigh
         g = 0.76
 
         phaseR = 3. / (16. * np.pi) * (mu * mu + 1.)
@@ -122,10 +140,16 @@ class Atmosphere:
                 sumM = sumM + attenuation * hm
 
             tCurrent += segmentLength
+
+        # 20 is a magic number :)
+        # For Mars, 20e25
         return (sumR * self.betaR * phaseR + sumM * self.betaM * phaseM) * 20.
 
 
-def render(sun_direction, height, width):
+def render(scene):
+    sun_direction, window = scene
+    width, height = window
+
     atmosphere = Atmosphere(sun_direction)
 
     r = np.zeros(width * height).reshape((width, height))

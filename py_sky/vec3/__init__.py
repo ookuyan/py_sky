@@ -37,8 +37,8 @@ class Vec3:
     >>>
     >>> a += Vec3(0., 1., 0.)
     >>>
-    >>> for i in range(3):
-    >>>     print a[i]
+    >>> print(a)
+    [-1.0, -0.5, -16.0]
     """
 
     def __init__(self, x=0., y=None, z=None):
@@ -50,23 +50,17 @@ class Vec3:
             else:
                 self.vec = np.array([x, y, z])
 
-    def _length2(self):
-        return self.vec[0] * self.vec[0] + \
+    def length(self):
+        _len = self.vec[0] * self.vec[0] + \
                self.vec[1] * self.vec[1] + \
                self.vec[2] * self.vec[2]
 
-    def length(self):
-        # return T(np.sqrt(self._length2()))
-        return np.sqrt(self._length2())
+        return np.sqrt(_len)
 
     def max(self):
-        # return T(max(self.vec[0], max(self.vec[1], self.vec[2])))
         return max(self.vec[0], max(self.vec[1], self.vec[2]))
 
     def dot(self, v):
-        # return T(v.vec[0] * self.vec[0] +
-        #          v.vec[1] * self.vec[1] +
-        #          v.vec[2] * self.vec[2])
         return v.vec[0] * self.vec[0] + \
                v.vec[1] * self.vec[1] + \
                v.vec[2] * self.vec[2]

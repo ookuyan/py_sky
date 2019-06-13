@@ -1,14 +1,12 @@
 #!/usr/bin/env python
 
-from py_sky import render, show, position_of_sun
+from py_sky import render, show, set_scene
 
 
 def main():
-    height, width = 32, 32
+    scene = set_scene(zenith=60, azimuth=180, width=32, height=32)
 
-    sun_direction = position_of_sun(30, 180)
-
-    rgb = render(sun_direction, height, width)
+    rgb = render(scene)
 
     show(rgb)
 

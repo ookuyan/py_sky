@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-__all__ = ['solve_quadratic', 'intersect', 'show', 'position_of_sun']
+__all__ = ['solve_quadratic', 'intersect', 'show', 'set_scene']
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -17,6 +17,12 @@ def position_of_sun(zenith, azimuth):
                          -np.sin(zenith) * np.cos(azimuth))
 
     return sun_direction
+
+
+def set_scene(zenith=0, azimuth=0, width=32, height=32):
+    sun_direction = position_of_sun(zenith, azimuth)
+
+    return sun_direction, (width, height)
 
 
 def solve_quadratic(a, b, c, x):
@@ -72,7 +78,7 @@ def intersect(r, radius, t):
     return True
 
 
-def show(rgb, save=False, grid=False, filename='sky.png'):
+def show(rgb, save=False, grid=False, dpi=72, filename='sky.png'):
     r, g, b = rgb
 
     img = np.zeros((r.shape[0], r.shape[1], 3), dtype=float)
@@ -85,6 +91,6 @@ def show(rgb, save=False, grid=False, filename='sky.png'):
     plt.imshow(img, aspect='equal', interpolation=None, origin='upper')
 
     if save:
-        plt.savefig(filename)
-
-    plt.show()
+        plt.savefig(filename, dpi=dpi)
+    else:
+        plt.show()

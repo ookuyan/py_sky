@@ -1,3 +1,3 @@
 #!/usr/bin/env python
 
-from .engine import render, show, position_of_sun
+from .engine import render, show, set_scene
