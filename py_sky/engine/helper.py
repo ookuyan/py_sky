@@ -78,7 +78,9 @@ def intersect(r, radius, t):
     return True
 
 
-def show(rgb, save=False, grid=False, dpi=72, filename='sky.png'):
+def show(rgb, save=False, grid=False, fig_size=(12, 12),
+         dpi=72, filename='sky.png'):
+
     r, g, b = rgb
 
     img = np.zeros((r.shape[0], r.shape[1], 3), dtype=float)
@@ -86,9 +88,12 @@ def show(rgb, save=False, grid=False, dpi=72, filename='sky.png'):
     img[:, :, 1] = g
     img[:, :, 2] = b
 
+    fig, ax = plt.subplots(figsize=fig_size)
+
     if grid:
-        plt.grid()
-    plt.imshow(img, aspect='equal', interpolation=None, origin='upper')
+        ax.grid()
+    
+    ax.imshow(img, aspect='equal', interpolation=None, origin='upper')
 
     if save:
         plt.savefig(filename, dpi=dpi)
