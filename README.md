@@ -80,7 +80,7 @@ Image(filename='movie.gif', width=500, height=500)
 
 
 
-<img src="misc/movie.gif" width="500", height="500">
+![](misc/movie.gif=500x500)
 
 
 
