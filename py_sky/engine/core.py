@@ -180,4 +180,9 @@ def render(scene):
                 g[i][j] = flux.vec[1]
                 b[i][j] = flux.vec[2]
 
-    return r, g, b
+    data = np.zeros((width, height, 3))
+    data[..., 0] = r
+    data[..., 1] = g
+    data[..., 2] = b
+
+    return data
